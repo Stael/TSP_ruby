@@ -4,16 +4,20 @@ require 'json'
 class PointManager
 
   private
+  # Transformations des données JSON contenant les coordonnées
+  # des points en objets manipulables
   def add_points_from_json(raw_datas)
+    # Parsing des données "raws" en JSON
     json_datas = JSON.parse(raw_datas)
 
+    # On converti chaque point du format JSON en objet Point
     json_datas.each do |point|
-      tmp = Point.new(point['x'].to_f, point['y'].to_f)
-      @points.add(tmp)
+      @points.add(Point.new(point['x'].to_f, point['y'].to_f))
     end
   end
 
   public
+  # Génération de points aléatoires
   def generate(number)
     (1..number).each {
       @points.add(Point.new(rand(0.0..1.0), rand(0.0..1.0)))
@@ -21,23 +25,36 @@ class PointManager
     self
   end
 
+  # On cherche et retourne le point le plus proche de celui passé
+  # Cout : O(n), avec n le nombre d'éléments dans notre SET de points
   # @param [Point] point
   def closest_point(point)
-    cp = nil
+    # On mémorise la distance pour éviter d'avoir à la recalculer
+    closest_point = nil
+    distance      = 0
+
     @points.each do |pt|
-      if cp.nil? || point.distance(pt) < point.distance(cp)
-        cp = pt
+      if closest_point.nil? || point.distance(pt) < distance
+        closest_point = pt
+        distance      = point.distance(pt)
       end
     end
 
-    @points.delete(cp)
-    cp
+    # On retire le point de notre SET de points
+    @points.delete(closest_point)
+    # On indique au point passé en paramètre la distance avec le point trouvé
+    point.distance_closest_point =distance
+
+    closest_point
   end
 
+  # Renvoit la taille de notre Set de points
+  # @return [Integer]
   def size
     @points.size
   end
 
+  # Renvoit le premier point du Set
   def get_first_point
     @points.each do |pt|
       @points.delete(pt)
@@ -45,6 +62,7 @@ class PointManager
     end
   end
 
+  # Imports des points
 
   def import_16_points
     add_points_from_json(@t16)
