@@ -34,9 +34,10 @@ class PointManager
     distance      = 0
 
     @points.each do |pt|
-      if closest_point.nil? || point.distance(pt) < distance
+      tmp_distance = point.distance(pt)
+      if closest_point.nil? || tmp_distance < distance
         closest_point = pt
-        distance      = point.distance(pt)
+        distance      = tmp_distance
       end
     end
 
