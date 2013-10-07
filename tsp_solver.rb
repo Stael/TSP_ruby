@@ -1,11 +1,14 @@
 class TSPSolver
 
+  # Résolution du problème du TSP
+  # Cout : O(n + (n-1) + ... + 1) = O((n)(n+1)/2) = O(n^2)
+  # @return [Array(Point)]
   def self.exec(point_manager)
     # On crée un tableau qui contiendra les points et l'ordre dans
     # lequel les parcourir
     points      = Array.new
 
-    # On récupère le premier point du Set
+    # On récupère le premier point du Array
     first_point = point_manager.get_first_point
 
     # On ajoute le premier point à notre tableau
@@ -23,7 +26,7 @@ class TSPSolver
     end
 
     # On revient au point de départ
-    last_point.distance_closest_point=last_point.distance(first_point)
+    last_point.distance_closest_point=last_point.square_distance(first_point)
     points.push(first_point)
 
     points

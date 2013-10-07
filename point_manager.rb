@@ -1,4 +1,3 @@
-require 'set'
 require 'json'
 
 class PointManager
@@ -12,7 +11,7 @@ class PointManager
 
     # On converti chaque point du format JSON en objet Point
     json_datas.each do |point|
-      @points.add(Point.new(point['x'].to_f, point['y'].to_f))
+      @points.push(Point.new(point['x'].to_f, point['y'].to_f))
     end
   end
 
@@ -20,13 +19,13 @@ class PointManager
   # Génération de points aléatoires
   def generate(number)
     (1..number).each {
-      @points.add(Point.new(rand(0.0..1.0), rand(0.0..1.0)))
+      @points.push(Point.new(rand(0.0..1.0), rand(0.0..1.0)))
     }
     self
   end
 
   # On cherche et retourne le point le plus proche de celui passé
-  # Cout : O(n), avec n le nombre d'éléments dans notre SET de points
+  # Cout : O(n), avec n le nombre d'éléments dans notre Array de points
   # @param [Point] point
   def closest_point(point)
     # On mémorise la distance pour éviter d'avoir à la recalculer
@@ -34,14 +33,14 @@ class PointManager
     distance      = 0
 
     @points.each do |pt|
-      tmp_distance = point.distance(pt)
+      tmp_distance = point.square_distance(pt)
       if closest_point.nil? || tmp_distance < distance
         closest_point = pt
         distance      = tmp_distance
       end
     end
 
-    # On retire le point de notre SET de points
+    # On retire le point de notre Array de points
     @points.delete(closest_point)
     # On indique au point passé en paramètre la distance avec le point trouvé
     point.distance_closest_point =distance
@@ -49,13 +48,13 @@ class PointManager
     closest_point
   end
 
-  # Renvoit la taille de notre Set de points
+  # Renvoit la taille de notre Array de points
   # @return [Integer]
   def size
     @points.size
   end
 
-  # Renvoit le premier point du Set
+  # Renvoit le premier point du Array
   def get_first_point
     @points.each do |pt|
       @points.delete(pt)
@@ -106,7 +105,7 @@ class PointManager
   end
 
   def initialize
-    @points = Set.new
+    @points = Array.new
 
     @t16='[{"x" : "0.853649629650251596", "y" : "0.271574228837567"},
       {"x" : "0.92814765125054155", "y" : "0.647955972884588727"},

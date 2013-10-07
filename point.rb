@@ -10,8 +10,8 @@ class Point
 
   # Calcul de la distance entre 2 points
   # @param [Point] point
-  def distance(point)
-    Math.sqrt((@x - point.x)**2 + (@y - point.y)**2)
+  def square_distance(point)
+    (@x - point.x)**2 + (@y - point.y)**2
   end
 
   # Affichage d'un point
