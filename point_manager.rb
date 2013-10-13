@@ -11,15 +11,19 @@ class PointManager
 
     # On converti chaque point du format JSON en objet Point
     json_datas.each do |point|
-      @points.push(Point.new(point['x'].to_f, point['y'].to_f))
+      @points.push(LinkedPoint.new(point['x'].to_f, point['y'].to_f))
     end
   end
 
   public
+  def to_a
+    @points
+  end
+
   # Génération de points aléatoires
   def generate(number)
     (1..number).each {
-      @points.push(Point.new(rand(0.0..1.0), rand(0.0..1.0)))
+      @points.push(LinkedPoint.new(rand(0.0..1.0), rand(0.0..1.0)))
     }
     self
   end

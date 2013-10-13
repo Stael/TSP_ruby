@@ -5,7 +5,7 @@ class Point
   def initialize(x, y)
     @x = x
     @y = y
-    @distance_closest_point = 0
+    self.distance_closest_point = 0
   end
 
   # Calcul de la distance entre 2 points

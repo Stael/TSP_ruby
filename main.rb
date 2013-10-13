@@ -1,4 +1,5 @@
 load 'point.rb'
+load 'linked_point.rb'
 load 'point_manager.rb'
 load 'tsp_solver.rb'
 
@@ -6,7 +7,7 @@ load 'tsp_solver.rb'
 beginning = Time.now
 
 # On résoud le problème
-points = TSPSolver.exec(PointManager.new.import_512_points)
+points = TSPSolver.exec_dtc(PointManager.new.import_512_points)
 
 # On calcule la distance total
 total_distance = 0.0
