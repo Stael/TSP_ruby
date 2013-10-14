@@ -68,7 +68,7 @@ class TSPSolver
   # la liste des points à relier entre eux et l'axe selon lequel
   # découper ces points
   #
-  # Cout : Tri des points : 0(nlogn) +
+  # Cout : Tri des points : O(nlogn) + 2T(n/2) -> O(logn * nlogn)
   #
   # /!\ Le résultat est une Double - Ended queue de points
   # modélisée par un tableau à 2 éléments :
