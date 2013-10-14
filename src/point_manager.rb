@@ -47,7 +47,7 @@ class PointManager
     # On retire le point de notre Array de points
     @points.delete(closest_point)
     # On indique au point passé en paramètre la distance avec le point trouvé
-    point.distance_closest_point =distance
+    point.distance_closest_point =Math.sqrt(distance)
 
     closest_point
   end
