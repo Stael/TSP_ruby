@@ -40,6 +40,8 @@ class TSPSolver
   # des points sur l'axe des ordonnées, et ainsi de suite, jusqu'à retomber sur le case
   # de base, ou on relie entre eux 2 ou 3 points
   #
+  # Cout : O(nlogn) + 2T(n/2) -> O(logn * nlogn)
+  #
   # @param [PointManager] point_manager
   # @return [Array<Point>]
   def self.exec_dtc(point_manager)
@@ -67,8 +69,6 @@ class TSPSolver
   # On résoud un problème / sous problème composé de 2 paramètres
   # la liste des points à relier entre eux et l'axe selon lequel
   # découper ces points
-  #
-  # Cout : Tri des points : O(nlogn) + 2T(n/2) -> O(logn * nlogn)
   #
   # /!\ Le résultat est une Double - Ended queue de points
   # modélisée par un tableau à 2 éléments :

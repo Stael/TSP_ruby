@@ -141,13 +141,20 @@
 
         <div class="method-description">
           
-          <p>@param [PointManager] point_manager @return [Array&lt;Point&gt;]</p>
+          <p>Résolution du problème du TSP par une méthode Divide To Conquer (DTC) Le
+principe est de l&#39;ensemble des points en 2 sous groupes selon leur
+positionnement sur l&#39;axe des abscisses, puis découper chaque sous
+groupe en fonction de la position des points sur l&#39;axe des ordonnées,
+et ainsi de suite, jusqu&#39;à retomber sur le case de base, ou on relie
+entre eux 2 ou 3 points</p>
+
+<p>@param [PointManager] point_manager @return [Array&lt;Point&gt;]</p>
           
           
 
           
           <div class="method-source-code" id="exec_dtc-source">
-            <pre><span class="ruby-comment"># File src/tsp_solver.rb, line 39</span>
+            <pre><span class="ruby-comment"># File src/tsp_solver.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">exec_dtc</span>(<span class="ruby-identifier">point_manager</span>)
   <span class="ruby-comment"># On récupère le tableau de points</span>
   <span class="ruby-identifier">points</span>      = <span class="ruby-identifier">point_manager</span>.<span class="ruby-identifier">to_a</span>
